@@ -1,0 +1,93 @@
+/*
+  Question Name: Print Anagrams Together 
+  Question: Given an array of strings, return all groups of strings that are anagrams. The groups must be created in order of their appearance in the original array. 
+  Look at the sample case for clarification.
+
+  Link: https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
+  
+ */
+ 
+ //Initial Template for C++
+#include <bits/stdc++.h>
+#include <unordered_map>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+        
+        unordered_map<string, vector<string>> umap;
+        
+        for(int i=0; i<string_list.size(); i++){
+            string str = string_list[i];
+            vector<int> count(26, 0);
+
+            // find the occurrence of all the characters
+            for(int j=0; j<str.length(); j++){
+                count[str[j] - 'a']++;    
+            }
+
+            // create a string depicting each character occurrence
+            string temp = "";
+            for(int j=0; j<26; j++){
+                if(count[j] != 0){
+                    temp += (char)('a' + j) + to_string(count[j]);
+                }
+            }
+
+            // store the occurrence string with the original string in map
+            umap[temp].push_back(str);
+        }
+        
+        
+        vector<vector<string>> ans;
+        // traverse the map and print the strings in order of their occurrence
+        for(auto i : umap){
+            vector<string> s = i.second;
+            ans.push_back(s);
+        }
+        
+        
+        return ans;
+    }
+};
+
+// { Driver Code Starts.
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        vector<string> string_list(n);
+        for (int i = 0; i < n; ++i)
+            cin>>string_list[i]; 
+        Solution ob;
+        vector<vector<string> > result = ob.Anagrams(string_list);
+        sort(result.begin(),result.end());
+        for (int i = 0; i < result.size(); i++)
+        {
+            for(int j=0; j < result[i].size(); j++)
+            {
+                cout<<result[i][j]<<" ";
+            }
+            cout<<"\n";
+        }
+    }
+
+    return 0;
+}
+  // } Driver Code Ends
+
+
+
+
+ 
