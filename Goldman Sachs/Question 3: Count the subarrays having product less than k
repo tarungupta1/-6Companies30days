@@ -5,24 +5,23 @@ Question
 Given an array of positive numbers, the task is to find the number of possible contiguous subarrays having product less than a given number k.
 
 
+Time Complexity: O(N), where N is length of array
+Space Complexity: O(1)
+
+
 Solution
 #include <bits/stdc++.h>
 using namespace std;
-
-
-
- // } Driver Code Ends
-
 
 class Solution{
   public:
     int countSubArrayProductLessThanK(const vector<int>& nums, int n, long long k) {
         
-        // as all values are greater than than 0, their product's range is [1, infinity) which won't fulfill the condition, where product should be less than 1, se returning 0
+        // as all values are greater than than 0, their product's range is [1, infinity) which won't fulfill the condition, where product should be less than 1, so
+        // returning 0
         if(k <= 1){
             return 0;            
         }
-        
         
         int ans = 0;    // stores the number of subarrays
         
@@ -49,7 +48,6 @@ class Solution{
     }
 };
 
-// { Driver Code Starts.
 int main() {
     int t;
     cin >> t;
@@ -64,8 +62,3 @@ int main() {
     }
     return 0;
 }
-  // } Driver Code Ends
-
-
-
-
