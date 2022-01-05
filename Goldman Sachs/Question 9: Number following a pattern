@@ -6,20 +6,21 @@ Given a pattern containing only I's and D's. I for increasing and D for decreasi
 from 1-9 and digits can't repeat.
 
 
+Time Complexity: O(N), where N is length of string
+Space Complexity: O(N), where N is length of string
+
+
 Solution
 #include<bits/stdc++.h> 
 using namespace std; 
 
- // } Driver Code Ends
 class Solution{   
 public:
     string printMinNumberForPattern(string str){
         // code here 
         
-        int n = str.length();
- 
-        string result(n+1, ' ');
-     
+        int n = str.length(); 
+        string result(n+1, ' ');     
         int count = 1; 
      
         // The loop runs for each input character as well as one additional time for assigning rank to remaining characters
@@ -36,22 +37,14 @@ public:
     }
 };
 
-
-// { Driver Code Starts.
-int main() 
-{ 
+int main() { 
     int t;
     cin>>t;
-    while(t--)
-    {
+    while(t--)    {
         string S;
         cin >> S;
         Solution ob;
         cout << ob.printMinNumberForPattern(S) << endl;
     }
     return 0; 
-} 
-  // } Driver Code Ends
-
-
-
+}
