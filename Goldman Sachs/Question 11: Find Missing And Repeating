@@ -5,12 +5,14 @@ Question
 Given an unsorted array Arr of size N of positive integers. One number 'A' from set {1, 2, …N} is missing and one number 'B' occurs twice in array. Find these two numbers.
 
 
+Time Complexity: O(N), where N is length of array
+Space Complexity: O(1)
+
+
 Solution
 #include <bits/stdc++.h>
-
 using namespace std;
 
- // } Driver Code Ends
 class Solution{
 public:
     int *findTwoElement(int *arr, int n) {
@@ -38,7 +40,6 @@ public:
     }
 };
 
-// { Driver Code Starts.
 
 int main() {
     int t;
@@ -55,7 +56,4 @@ int main() {
         cout << ans[0] << " " << ans[1] << "\n";
     }
     return 0;
-}  // } Driver Code Ends
- 
-
-
+}
