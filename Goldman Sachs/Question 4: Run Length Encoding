@@ -7,28 +7,28 @@ Given a string, Your task is to  complete the function encode that returns the r
 You are required to complete the function encode that takes only one argument the string which is to be encoded and returns the encoded string.
 
 
+Time Complexity: O(N), where N is length of string and M is length of word2
+Space Complexity: O(1)
+
+
 Solution
 #include <bits/stdc++.h>
 using namespace std;
 
 string encode(string src);    
  
-int main() {
-	
+int main() {	
 	int T;
 	cin>>T;
-	while(T--)
-	{
+	while(T--){
 		string str;
 		cin>>str;
 		
 		cout<<encode(str)<<endl;
 	}
 	return 0;
-}// } Driver Code Ends
+}
 
-
-/*You are required to complete this function */
 
 string encode(string str){     
     //Your code here 
@@ -42,6 +42,7 @@ string encode(string str){
             j++;
         }
         
+        // stores occurrence of same alphabets
         int count = j - i;
         
         ans += str[i] + to_string(count);
@@ -51,5 +52,3 @@ string encode(string str){
     
     return ans;
 }  
-
-
