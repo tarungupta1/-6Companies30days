@@ -1,0 +1,71 @@
+Problem Name: Count the subarrays having product less than k 
+Link: https://practice.geeksforgeeks.org/problems/count-the-subarrays-having-product-less-than-k1708/1/
+
+Question
+Given an array of positive numbers, the task is to find the number of possible contiguous subarrays having product less than a given number k.
+
+
+Solution
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+ // } Driver Code Ends
+
+
+class Solution{
+  public:
+    int countSubArrayProductLessThanK(const vector<int>& nums, int n, long long k) {
+        
+        // as all values are greater than than 0, their product's range is [1, infinity) which won't fulfill the condition, where product should be less than 1, se returning 0
+        if(k <= 1){
+            return 0;            
+        }
+        
+        
+        int ans = 0;    // stores the number of subarrays
+        
+        // stores product of numbers from left pointer to right pointer
+        long long int pro = 1;
+        
+        // using sliding window, we will check number of subarrays made when a right element is introduced in the sliding window
+        for(int left = 0, right = 0; right < nums.size(); right++){
+            
+            // adding right element in the window
+            pro *= nums[right];
+            
+            // positioning the left pointer, so that the product is less than k
+            while(pro >= k){
+                pro /= nums[left];
+                left++;
+            }
+            
+            // adding the number of subarrays formed by introducing the right element i.e. length of the sliding window
+            ans += (right - left + 1);
+        }
+        
+        return ans;
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, i;
+        long long int k;
+        cin >> n >> k;
+        vector<int> arr(n);
+        for (i = 0; i < n; i++) cin >> arr[i];
+        Solution obj;
+        cout << obj.countSubArrayProductLessThanK(arr, n, k) << endl;
+    }
+    return 0;
+}
+  // } Driver Code Ends
+
+
+
+
