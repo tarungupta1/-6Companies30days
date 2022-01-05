@@ -8,7 +8,7 @@ An encoded string (s) is given, the task is to decode it. The pattern in which t
 
 
 Time Complexity: O(S), where S is length of string
-Space Complexity: O(S)
+Space Complexity: O(S), where S is length of string
 
 
 Solution
