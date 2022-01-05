@@ -5,16 +5,17 @@ Question
 Given an array of integers and a number k, write a function that returns true if given array can be divided into pairs such that sum of every pair is divisible by k.
 
 
-Solution
-// Initial Template for Java
+Time Complexity: O(N), where N is length of array
+Space Complexity: O(N), where N is length of array
 
+
+Solution
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 class GFG {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =
-            new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine().trim());
         while (T-- > 0) {
             String s1 = br.readLine().trim();
@@ -36,10 +37,7 @@ class GFG {
         }
     }
 }
-// } Driver Code Ends
 
-
-// User function Template for Java
 
 class Solution {
     public boolean canPair(int[] nums, int k) {
@@ -80,4 +78,3 @@ class Solution {
         return true;
     }
 }
-
