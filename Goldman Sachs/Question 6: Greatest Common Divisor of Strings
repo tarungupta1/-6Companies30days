@@ -6,6 +6,10 @@ For two strings s and t, we say "t divides s" if and only if s = t + ... + t (i.
 Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
 
 
+Time Complexity: O(N * (N + M)), where N is length of biggest string and M is the length of smallest string
+Space Complexity: O(M), where M is the length of smallest string
+
+
 Solution
 class Solution {
 public:
@@ -15,7 +19,9 @@ public:
             swap(str1, str2);
         }
         
-        // will create a subtring and check whole string, and decide whether it is repeating or not. So we will take the substring length equals to smallest string length. Then check, if we get the substring repeating we will return the substring, else we will decrease teh substring length and then check. We will check till our substring is not empty
+        // will create a subtring and check whole string, and decide whether it is repeating or not. So we will take the substring length equals to smallest string 
+        // length. Then check, if we get the substring repeating we will return the substring, else we will decrease teh substring length and then check. We will check 
+        // till our substring is not empty
         for(int k = str2.length(); k>=1; k--){
             
             // if substring's length isn't a multiple of both the strings' length, so it is not the answer
@@ -65,4 +71,3 @@ public:
         return "";
     }
 };
-
