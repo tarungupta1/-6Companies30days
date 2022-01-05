@@ -1,0 +1,57 @@
+Problem Name: Number following a pattern 
+Link: https://practice.geeksforgeeks.org/problems/number-following-a-pattern3126/1
+
+Question
+Given a pattern containing only I's and D's. I for increasing and D for decreasing. Devise an algorithm to print the minimum number following that pattern. Digits 
+from 1-9 and digits can't repeat.
+
+
+Solution
+#include<bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+class Solution{   
+public:
+    string printMinNumberForPattern(string str){
+        // code here 
+        
+        int n = str.length();
+ 
+        string result(n+1, ' ');
+     
+        int count = 1; 
+     
+        // The loop runs for each input character as well as one additional time for assigning rank to remaining characters
+        for (int i = 0; i <= n; i++){
+            if (i == n || str[i] == 'I'){
+                for (int j = i - 1 ; j >= -1 ; j--){
+                    result[j + 1] = '0' + count++;
+                    if(j >= 0 && str[j] == 'I')
+                        break;
+                }
+            }
+        }
+        return result;
+    }
+};
+
+
+// { Driver Code Starts.
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string S;
+        cin >> S;
+        Solution ob;
+        cout << ob.printMinNumberForPattern(S) << endl;
+    }
+    return 0; 
+} 
+  // } Driver Code Ends
+
+
+
