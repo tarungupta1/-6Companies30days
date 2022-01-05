@@ -1,12 +1,11 @@
-/*
-  Question Name: Print Anagrams Together 
-  Question: Given an array of strings, return all groups of strings that are anagrams. The groups must be created in order of their appearance in the original array. 
-  Look at the sample case for clarification.
+Problem Name: Print Anagrams Together 
+Link: https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
 
-  Link: https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
-  
- */
- 
+Question
+Given an array of strings, return all groups of strings that are anagrams. The groups must be created in order of their appearance in the original array.
+
+
+Solution
  //Initial Template for C++
 #include <bits/stdc++.h>
 #include <unordered_map>
