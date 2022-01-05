@@ -7,13 +7,16 @@ An encoded string (s) is given, the task is to decode it. The pattern in which t
       encoded string : 3[a3[b]1[ab]]
 
 
+Time Complexity: O(S), where S is length of string
+Space Complexity: O(S)
+
+
 Solution
 import java.io.*;
 import java.util.*;
 
 class GFG{
-    public static void main(String args[])throws IOException
-    {
+    public static void main(String args[])throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(in.readLine());
         while(t-- > 0){
@@ -23,10 +26,7 @@ class GFG{
             System.out.println(ob.decodedString(s));
         }
     }
-}// } Driver Code Ends
-
-
-//User function Template for Java
+}
 
 class Solution{
     static String decodedString(String s){
@@ -105,4 +105,3 @@ class Solution{
         return ans;
     }
 }
-
