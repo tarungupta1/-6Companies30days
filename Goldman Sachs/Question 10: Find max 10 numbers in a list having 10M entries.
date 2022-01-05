@@ -4,9 +4,11 @@ Question
 Find max 10 numbers in a list having 10M entries.
 
 
-Solution
-/*package whatever //do not write package name here */
+Time Complexity: O(N + M), where N is length of word1 and M is length of word2
+Space Complexity: O(1)
 
+
+Solution
 import java.io.*;
 import java.util.*;
 
@@ -39,4 +41,3 @@ class GFG {
 		}
 	}
 }
-
