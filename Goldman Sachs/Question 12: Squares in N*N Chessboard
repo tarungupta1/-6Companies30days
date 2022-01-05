@@ -5,11 +5,13 @@ Question
 Find total number of Squares in a N*N cheesboard.
 
 
+Time Complexity: O(1)
+Space Complexity: O(1)
+
+
 Solution
 #include <bits/stdc++.h>
 using namespace std;
-
- // } Driver Code Ends
 
 class Solution {
   public:
@@ -20,7 +22,6 @@ class Solution {
     }
 };
 
-// { Driver Code Starts.
 int main() {
     int t;
     cin >> t;
@@ -33,7 +34,4 @@ int main() {
         cout << ob.squaresInChessBoard(N) << endl;
     }
     return 0;
-}  // } Driver Code Ends
-
-
-
+}
