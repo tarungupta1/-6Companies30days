@@ -1,17 +1,18 @@
 Problem Name: Distributing M items in a circle of size N starting from K-th position
-Link: https://practice.geeksforgeeks.org/problems/overlapping-rectangles1924/1/
+Link: https://practice.geeksforgeeks.org/problems/find-the-position-of-m-th-item1723/1/
 
 Question
 M items are to be delivered in a circle of size N. Find the position where the M-th item will be delivered if we start from a given position K. Note that items 
 are distributed at adjacent positions starting from K.
 
 
+Time Complexity: O(N + M), where N is length of word1 and M is length of word2
+Space Complexity: O(1)
+
+
 Solution
 #include <bits/stdc++.h>
 using namespace std;
-
- // } Driver Code Ends
-
 
 class Solution {
   public:
@@ -35,7 +36,6 @@ class Solution {
     }
 };
 
-// { Driver Code Starts.
 int main() {
     int t;
     cin >> t;
@@ -48,4 +48,4 @@ int main() {
         cout << ob.findPosition(N,M,K) << endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
