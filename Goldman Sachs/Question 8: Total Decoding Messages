@@ -12,11 +12,14 @@ Note: An empty digit sequence is considered to have one decoding. It may be assu
 extra trailing 0’s and two or more consecutive 0’s then it is an invalid string.
 
 
+Time Complexity: O(N), where N is length of string
+Space Complexity: O(1)
+
+
 Solution
 #include<bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
 class Solution {
 	public:
 		
@@ -29,7 +32,6 @@ class Solution {
 	    
 		int CountWays(string s){
 		    // Code here
-		    
 		    
             vector<int> dp(s.length() + 1);        
             dp[0] = 1;
@@ -55,10 +57,8 @@ class Solution {
             
             return dp[s.length()];
         }
-
 };
 
-// { Driver Code Starts.
 int main(){
 	int tc;
 	cin >> tc;
@@ -70,9 +70,4 @@ int main(){
 		cout << ans << "\n";
 	}
 	return 0;
-}  // } Driver Code Ends
-
-
-
- 
-
+}
