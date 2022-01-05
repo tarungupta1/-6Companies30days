@@ -6,7 +6,7 @@ M items are to be delivered in a circle of size N. Find the position where the M
 are distributed at adjacent positions starting from K.
 
 
-Time Complexity: O(N + M), where N is length of word1 and M is length of word2
+Time Complexity: O(1)
 Space Complexity: O(1)
 
 
