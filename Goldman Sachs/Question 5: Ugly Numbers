@@ -6,16 +6,15 @@ Ugly numbers are numbers whose only prime factors are 2, 3 or 5. The sequence 1,
 By convention, 1 is included. Write a program to find Nth Ugly Number.
 
 
+Time Complexity: O(N + M), where N is length of word1 and M is length of word2
+Space Complexity: O(1)
+
+
 Solution
 #include <bits/stdc++.h>
-
 using namespace std;
-
 #define ull unsigned long long
 
-
- // } Driver Code Ends
-//User function template for C++
 class Solution{
 public:	
 	// #define ull unsigned long long
@@ -56,7 +55,6 @@ public:
 	}
 };
 
-// { Driver Code Starts.
 
 int main() {
     int t;
@@ -70,6 +68,3 @@ int main() {
     }
     return 0;
 }
-  // } Driver Code Ends
-
-
