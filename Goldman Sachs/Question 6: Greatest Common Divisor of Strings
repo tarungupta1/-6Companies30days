@@ -1,0 +1,68 @@
+Problem Name: Greatest Common Divisor of Strings
+Link: https://leetcode.com/problems/greatest-common-divisor-of-strings/
+
+Question
+For two strings s and t, we say "t divides s" if and only if s = t + ... + t (i.e., t is concatenated with itself one or more times).
+Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+
+
+Solution
+class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) {
+                
+        if(str1.length() > str2.length()){
+            swap(str1, str2);
+        }
+        
+        // will create a subtring and check whole string, and decide whether it is repeating or not. So we will take the substring length equals to smallest string length. Then check, if we get the substring repeating we will return the substring, else we will decrease teh substring length and then check. We will check till our substring is not empty
+        for(int k = str2.length(); k>=1; k--){
+            
+            // if substring's length isn't a multiple of both the strings' length, so it is not the answer
+            if(str1.length() % k != 0  ||  str2.length() % k != 0){
+                continue;
+            }
+            
+            // getting the substring
+            string str = str2.substr(0, k);
+            
+            // cheking the first string
+            bool tag = false;            
+            for(int i=0; i<str1.length(); i += k){
+                
+                if(str1.substr(i, k) != str){
+                    tag = true;
+                    break;
+                }
+            }
+            
+            // when substring can't divide first string
+            if(tag == true){
+                continue;
+            }
+            
+            
+            // cheking the first string
+            tag = false;            
+            for(int i=0; i<str2.length(); i += k){
+                
+                if(str2.substr(i, k) != str){
+                    tag = true;
+                    break;
+                }
+            }
+            
+            // when substring can't divide second string
+            if(tag == true){
+                continue;
+            }
+            
+            // both passes, then return
+            return str;            
+        }
+        
+        // no substring divides both the strings
+        return "";
+    }
+};
+
