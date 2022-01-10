@@ -1,0 +1,53 @@
+Problem Name: Count ways to N'th Stair(Order does not matter) 
+Link: https://practice.geeksforgeeks.org/problems/count-ways-to-nth-stairorder-does-not-matter1322/1/
+
+Question
+In the stock market, a person buys a stock and sells it on some future date. Given the stock prices of N days in an array A[ ] and a positive integer K, find out the 
+maximum profit a person can make in at-most K transactions. A transaction is equivalent to (buying + selling) of a stock and new transaction can start only when the 
+previous transaction has been completed.
+
+
+Time Complexity: O(N), where N is the length of the stair
+Space Complexity: O(N), where N is the length of the stair
+
+
+Solution
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+	public:
+	string FirstNonRepeating(string str){
+        string ans = "";
+        deque<char> dq;
+        int hash[26]={0};
+        
+        for(auto it:str){
+            int pos = it - 'a';
+            
+            if(hash[pos] == 0){
+                dq.push_back(it);
+            } 
+            hash[pos]++;
+            
+            while(!dq.empty() and hash[dq.front() - 'a'] != 1) dq.pop_front();
+            
+            if(dq.empty()) ans += '#';
+            else ans += dq.front();   
+        }
+        return ans;
+	}
+};
+
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		string A;
+		cin >> A;
+		Solution obj;
+		string ans = obj.FirstNonRepeating(A);
+		cout << ans << "\n";
+	}
+	return 0;
+} 
