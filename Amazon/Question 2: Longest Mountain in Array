@@ -1,0 +1,45 @@
+Problem Name: Longest Mountain in Array
+Link: https://leetcode.com/problems/longest-mountain-in-array/
+
+Question
+You may recall that an array arr is a mountain array if and only if:
+  1. arr.length >= 3
+  2. There exists some index i (0-indexed) with 0 < i < arr.length - 1 such that:
+      ->  arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
+      ->  arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+      
+Given an integer array arr, return the length of the longest subarray, which is a mountain. Return 0 if there is no mountain subarray.
+
+
+Time Complexity: O(N), where is the length of the array
+Space Complexity: O(N), where is the length of the array
+
+
+Solution
+class Solution {
+public:
+    int longestMountain(vector<int> A) {
+        
+        int N = A.size();        
+        int res = 0;
+        
+        vector<int> up(N, 0), down(N, 0);
+        for (int i = N - 2; i >= 0; --i){
+            if (A[i] > A[i + 1]){
+                down[i] = down[i + 1] + 1;
+            }
+        }
+                                         
+        for (int i = 0; i < N; ++i) {
+            if (i > 0 && A[i] > A[i - 1]){
+                up[i] = up[i - 1] + 1;
+            }
+            
+            if (up[i] && down[i]){
+                res = max(res, up[i] + down[i] + 1);
+            }
+        }
+                                         
+        return res;
+    }
+};
