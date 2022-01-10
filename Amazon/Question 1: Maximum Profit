@@ -1,43 +1,62 @@
-Problem Name: Find max 10 numbers in a list having 10M entries.
+Problem Name: Maximum Profit 
+Link: https://practice.geeksforgeeks.org/problems/maximum-profit4657/1
 
 Question
-Find max 10 numbers in a list having 10M entries.
+In the stock market, a person buys a stock and sells it on some future date. Given the stock prices of N days in an array A[ ] and a positive integer K, find out the 
+maximum profit a person can make in at-most K transactions. A transaction is equivalent to (buying + selling) of a stock and new transaction can start only when the 
+previous transaction has been completed.
 
 
-Time Complexity: O(N * log(N)), where N is length of enteries
-Space Complexity: O(N), where N is length of enteries
+Time Complexity: O(N * K), where N is number of days and K is the number of transactions
+Space Complexity: O(N * K), where N is number of days and K is the number of transactions
 
 
 Solution
-import java.io.*;
-import java.util.*;
+#include <bits/stdc++.h>
+using namespace std;
 
-class GFG {
-	public static void main (String[] args) {
-		Scanner scn = new Scanner(System.in);
-		
-		int n = scn.nextInt();
-		int[] arr = new int[n];
-		for(int i=0; i<n; i++){
-		    arr[i] = scn.nextInt();
-		}
-		
-		PriorityQueue<Integer> pq = new PriorityQueue<>();
-		
-		for(int i=0; i<n; i++){
-		    if(pq.size() < 10){
-		        pq.add(arr[i]);
-		    }
-		    else{
-		        if(arr[i] > pq.peek()){
-		            pq.poll();
-		            pq.add(arr[i]);
-		        }
-		    }
-		}
-		
-		for(int i=0; i<10; i++){
-		    System.out.println(pq.poll() + " " );
-		}
-	}
+class Solution {
+  public:
+    int maxProfit(int k, int n, int *price){
+
+        int arr[k + 1][n + 1];
+        
+        for (int i = 0; i <= k; i++){
+            arr[i][0] = 0;
+        }
+    
+        for (int j = 0; j <= n; j++){
+            arr[0][j] = 0;
+        }
+    
+        for (int i = 1; i <= k; i++) {
+            for (int j = 1; j < n; j++) {
+                int max_ans = INT_MIN;
+    
+                for (int m = 0; m < j; m++){
+                    max_ans = max(max_ans, price[j] - price[m] + arr[i - 1][m]);
+                }
+                
+                arr[i][j] = max(arr[i][j - 1], max_ans);
+            }
+        }
+    
+        return arr[k][n - 1];
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N, K;
+        cin >> K;
+        cin >> N;
+        int A[N];
+        for (int i = 0; i < N; i++) cin >> A[i];
+
+        Solution ob;
+        cout << ob.maxProfit(K, N, A) << endl;
+    }
+    return 0;
 }
