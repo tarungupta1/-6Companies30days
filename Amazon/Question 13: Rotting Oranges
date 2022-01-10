@@ -1,0 +1,96 @@
+Problem Name: Rotting Oranges
+Link: https://leetcode.com/problems/rotting-oranges/
+
+Question
+You are given an m x n grid where each cell can have one of three values:
+  ->  0 representing an empty cell,
+  ->  1 representing a fresh orange, or
+  ->  2 representing a rotten orange.
+  
+Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.
+Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.
+
+
+Time Complexity: O(N * M), where N is the number of rows and M is the number of columns
+Space Complexity: O(N * M), where N is the number of rows and M is the number of columns
+
+
+Solution
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        
+        LinkedList<Pair> queue = new LinkedList<>();
+        
+        int fresh = 0;      // stores number of fresh oranges
+        for(int i=0; i<grid.length; i++){
+            for(int j=0; j<grid[0].length; j++){
+                
+                // if found rotten, then we will store them in a queue and apply BFS TRAVERSAL
+                if(grid[i][j] == 2){
+                    queue.add(new Pair(i, j));
+                }
+                else if(grid[i][j] == 1){
+                    fresh++;
+                }
+            }
+        }
+        
+        // if no fresh oranges, then return 0
+        if(fresh == 0){
+            return 0;
+        }
+        
+        // stores the indexes where we will jump for checking 
+        int [][]dirs = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        
+        //*******BFS TRAVERSAL********
+        int level = -1;     // tells the time
+        while(queue.size() > 0){
+            // at particular time, tells which oranges will get rotten
+            level++;
+            
+            int size = queue.size();
+            
+            while(size-- > 0){
+                Pair parent = queue.removeFirst();
+                                        
+                // for a particualr parent we will check in all four directions
+                for(int i=0 ; i<dirs.length; i++){
+                    int row_dash = parent.row + dirs[i][0];
+                    int col_dash = parent.col + dirs[i][1];
+                    
+                    // if the cell to be checked is out of the array or not fresh, then we will check for another cell
+                    if(row_dash < 0  ||  grid.length <= row_dash  ||  col_dash < 0  ||  grid[0].length <= col_dash  ||  grid[row_dash][col_dash] != 1){
+                        continue;
+                    }
+                    
+                    
+                    // when cell has fresh orange, then we will make it rotten and add it int the list as it will now help in rotting other frsh oranges. ALos decrasing the count of fresh oranges
+                    fresh--;
+                    queue.add(new Pair(row_dash, col_dash));
+                    grid[row_dash][col_dash] = 2;
+                }              
+                
+            }
+        }
+        
+        
+    // if some fresh pramges are left, then return -1 else return time i.e. level
+        if(fresh != 0){
+            return -1;
+        }
+        else{
+            return level;
+        }
+    }
+    
+    // stores row and col of each rotten orange
+    class Pair {        
+        int row, col;
+        
+        Pair(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+    }
+}
