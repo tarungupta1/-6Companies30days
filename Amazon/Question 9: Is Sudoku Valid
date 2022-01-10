@@ -1,0 +1,83 @@
+Problem Name: Is Sudoku Valid 
+Link: https://practice.geeksforgeeks.org/problems/is-sudoku-valid4820/1/
+
+Question
+Given an incomplete Sudoku configuration in terms of a 9x9  2-D square matrix(mat[][]) the task to check if the current configuration is valid or not where a 0 represents 
+an empty block.
+Note: Current valid configuration does not ensure validity of the final solved sudoku. 
+
+
+Time Complexity: O(N^2), where N is length of the matrix row
+Space Complexity: O(N^2), where N is length of the matrix row
+
+
+Solution
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+public:
+    int isValid(vector<vector<int>> mat){
+        int col[9][9]={0},row[9][9]={0},num=0;
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                if(mat[i][j]>0&&mat[i][j]<=9){
+                    num=mat[i][j]-1;
+                    if(row[i][num]!=0){
+                        return 0;
+                    }
+                    row[i][num]++;
+                    if(col[j][num]!=0){
+                        return 0;
+                    }
+                    col[j][num]++;
+                }
+                
+            }
+        }
+        for(int i=0;i<9;i+=3){
+
+            for(int j=0;j<9;j+=3){
+
+                unordered_set<int> s;
+
+                for(int n=i;n<i+3;n++){
+                    for(int k=j;k<j+3;k++){
+                        if(mat[n][k]==0){
+
+                            continue;
+
+                        }
+
+                        if(s.find(mat[n][k])==s.end()){
+
+                            s.insert(mat[n][k]);
+
+                        }
+
+                        else{
+
+                            return 0;
+
+                        }
+                    }
+                }
+            }
+        }
+        return 1;
+    }
+};
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        vector<vector<int>> mat(9, vector<int>(9, 0));
+        for(int i = 0;i < 81;i++)
+            cin>>mat[i/9][i%9];
+        
+        Solution ob;
+        cout<<ob.isValid(mat)<<"\n";
+    }
+    return 0;
+} 
