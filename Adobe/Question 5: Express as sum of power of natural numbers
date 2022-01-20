@@ -1,0 +1,66 @@
+Problem Name: Express as sum of power of natural numbers 
+Link: https://practice.geeksforgeeks.org/problems/express-as-sum-of-power-of-natural-numbers5647/1
+
+Question
+Given two numbers n and x, find out the total number of ways n can be expressed as sum of xth power of unique natural numbers.As total number of ways can be very large, 
+so return the number of ways modulo 109 + 7. 
+
+
+Time Complexity: O(N^2 * (log(N)), where N is the number of elements in vector
+Space Complexity: O(N), where N is the number of elements in vector
+
+
+Solution
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class GFG{
+    public static void main(String[] args) throws IOException    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)        {
+            String[] input = new String[2]; 
+            input = br.readLine().split(" "); 
+            int n = Integer.parseInt(input[0]); 
+            int x = Integer.parseInt(input[1]); 
+            Solution ob = new Solution();
+            System.out.println(ob.numOfWays(n, x));
+        }
+    }
+}
+
+class Solution{
+    static long mod = 1000000007;
+    
+    static long add(long a, long b){
+        long rem = ((a % mod) + (b % mod))%mod;
+        return rem;
+    }
+    
+    static int numOfWays(int n, int x){
+        // code here
+        long[]  dp = new long [n+1];
+        Arrays.fill(dp, 0);
+        
+        // Always 1 way to represent 0 or 1
+        // as sum of powers of natural numbers
+        dp[0] = dp[1] = 1;
+        
+        // For n == 10 and x == 2, we will only try till 3^2
+        // else, the sum will exceed n
+        long maxLimit = (long)(Math.pow(n, 1.0/x));
+
+        for(int i = 2; i <= maxLimit; i++){
+            long curr = (long)(Math.pow(i, x));
+            
+            // Same as "include" condition in recursive code
+            // and since, we are running a loop from i to maxLimit
+            // the "exclude" condition is also handled.
+            for(int j = n; j >= curr; j--){
+                dp[j] = add(dp[j], dp[j-(int)(curr)]);
+            }
+        }
+        
+        return (int)(dp[n] % 1000000007);
+    }
+}
