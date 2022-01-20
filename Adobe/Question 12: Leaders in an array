@@ -1,0 +1,63 @@
+Problem Name: Leaders in an array 
+Link: https://practice.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1/
+
+Question
+Given an array A of positive integers. Your task is to find the leaders in the array. An element of array is leader if it is greater than or equal to all the elements 
+to its right side. The rightmost element is always a leader. 
+
+
+Time Complexity: O(N), where N is the number of elements in vector
+Space Complexity: O(N), where N is the number of elements in vector
+
+
+Solution
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+    //Function to find the leaders in the array.
+    public:
+    vector<int> leaders(int a[], int n){
+       stack<int> st;
+       st.push(a[n-1]);
+       
+       for(int i=n-2;i>=0;i--){
+           if(st.top()<=a[i])
+               st.push(a[i]);
+       }
+       
+       vector<int> ans;
+       while(!st.empty()){
+           ans.push_back(st.top());
+           st.pop();
+       }
+       
+       return ans;
+    }
+};
+
+int main(){
+   long long t;
+   cin >> t;
+   while (t--)   {
+       long long n;
+       cin >> n;
+        
+        int a[n];
+        
+        //inserting elements in the array
+        for(long long i =0;i<n;i++){
+            cin >> a[i];
+        }
+        Solution obj;
+        //calling leaders() function
+        vector<int> v = obj.leaders(a, n);
+        
+        //printing elements of the vector
+        for(auto it = v.begin();it!=v.end();it++){
+            cout << *it << " ";
+        }
+        
+        cout << endl;
+   }
+}
