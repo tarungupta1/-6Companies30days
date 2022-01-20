@@ -1,0 +1,60 @@
+Problem Name: Pots of Gold Game 
+Link: https://practice.geeksforgeeks.org/problems/pots-of-gold-game/1/
+
+Question
+Two players X and Y are playing a game in which there are pots of gold arranged in a line, each containing some gold coins. They get alternating turns in which the player 
+can pick a pot from one of the ends of the line. The winner is the player who has a higher number of coins at the end. The objective is to maximize the number of coins 
+collected by X, assuming Y also plays optimally.
+Return the maximum coins X could get while playing the game. Initially, X starts the game.
+
+
+Time Complexity: O(N^2), where N is the number of elements in vector
+Space Complexity: O(N), where N is the number of elements in vector
+
+
+Solution
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int helper(vector < int > & v, int start, int end, vector < vector < int >> & dp) {
+        if (start > end) {
+            return dp[start][end] = 0;
+        }
+        if (start == end) {
+            return dp[start][end] = v[start];
+        }
+        if (dp[start][end] != -1) {
+            return dp[start][end];
+        }
+
+        int first = v[start] + min(helper(v, start + 1, end - 1, dp), helper(v, start + 2, end, dp));
+
+        int second = v[end] + min(helper(v, start + 1, end - 1, dp), helper(v, start, end - 2, dp));
+        
+        return dp[start][end] = max(first, second);
+    }
+
+    int maxCoins(vector < int > & A, int n) {
+        vector < vector < int >> dp(n + 1, vector < int > (n + 1, -1));
+        return helper(A, 0, n - 1, dp);
+    }
+
+};
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        cin >> N;
+        vector<int>A(N);
+        for (int i = 0; i < N; i++) {
+            cin >> A[i];
+        }
+        Solution ob;
+        cout << ob.maxCoins(A, N) << "\n";
+    }
+    return 0;
+}
