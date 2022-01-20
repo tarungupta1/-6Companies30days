@@ -65,7 +65,8 @@ class Solution {
                     }
                     
                     
-                    // when cell has fresh orange, then we will make it rotten and add it int the list as it will now help in rotting other frsh oranges. ALos decrasing the count of fresh oranges
+                    // when cell has fresh orange, then we will make it rotten and add it int the list as it will now help in rotting other frsh oranges. Also decreasing 
+                    // the count of fresh oranges
                     fresh--;
                     queue.add(new Pair(row_dash, col_dash));
                     grid[row_dash][col_dash] = 2;
