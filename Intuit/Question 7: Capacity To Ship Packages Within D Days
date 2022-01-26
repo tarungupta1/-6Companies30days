@@ -1,0 +1,54 @@
+Problem Name: Capacity To Ship Packages Within D Days
+Link: https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+
+Question
+A conveyor belt has packages that must be shipped from one port to another within days days.
+The ith package on the conveyor belt has a weight of weights[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may 
+not load more weight than the maximum weight capacity of the ship.
+Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days days.
+
+
+Time Complexity: O(N * log(N)), where N is the number of elements in vector
+Space Complexity: O(1)
+
+
+Solution
+class Solution {
+    public int shipWithinDays(int[] weights, int D) {
+        int n=weights.length;
+        int sum=0,max=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            sum=sum+weights[i];
+            
+            max=Math.max(max,weights[i]);
+            
+        }
+        
+        int low=max;
+        int high=sum;
+        int ans=sum;    //for worst case when D=1   (also we need something for initialisation)
+        while(low<=high){
+            int mid=low+((high-low)/2);
+            
+            int cwt=0;
+            int reqd=1;
+            for(int i=0;i<n;i++){
+                if(cwt+weights[i]>mid){
+                    reqd++;
+                    cwt=0;
+                }
+                cwt+=weights[i];
+            }
+            
+            if(reqd>D){
+                low=mid+1;
+            }
+            else{   //reqd<=D
+                ans=mid;
+                high=mid-1;
+            }
+        }
+        
+        return ans;
+    }
+}
