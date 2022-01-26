@@ -1,5 +1,5 @@
 Problem Name: Course Schedule II
-Link: https://practice.geeksforgeeks.org/problems/amend-the-sentence3235/1
+Link: https://leetcode.com/problems/course-schedule-ii/
 
 Question
 There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] 
