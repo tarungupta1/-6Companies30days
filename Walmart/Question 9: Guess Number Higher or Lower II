@@ -1,0 +1,47 @@
+Problem Name: Guess Number Higher or Lower II
+Link: https://leetcode.com/problems/guess-number-higher-or-lower-ii/
+
+Question
+We are playing the Guessing Game. The game will work as follows:
+  1. I pick a number between 1 and n.
+  2. You guess a number.
+  3. If you guess the right number, you win the game.
+  4. If you guess the wrong number, then I will tell you whether the number I picked is higher or lower, and you will continue guessing.
+  5. Every time you guess a wrong number x, you will pay x dollars. If you run out of money, you lose the game.
+  
+Given a particular n, return the minimum amount of money you need to guarantee a win regardless of what number I pick
+
+
+Time Complexity: O(N^3), where N is the length of the array
+Space Complexity: O(N^2), where N is the length of the array
+
+
+Solution
+public class Solution {
+    int[][] dp;
+    public int solve(int l, int r) {
+        if (l >= r) {
+            return 0;
+        }
+
+        if (dp[l][r] != Integer.MAX_VALUE) {
+            return dp[l][r];
+        }
+
+        for (int i = l; i <= r; i++) {
+            dp[l][r] = Math.min(dp[l][r], Math.max(i + solve(l, i - 1), i + solve(i + 1, r)));
+        }
+
+        return dp[l][r];
+    }
+
+    public int getMoneyAmount(int n) {
+        dp = new int[n + 1][n + 1];
+
+        for (int[] row: dp) {
+            Arrays.fill(row, Integer.MAX_VALUE);
+        }
+
+        return solve(1, n);
+    }
+}
