@@ -1,0 +1,42 @@
+Problem Name: Find Array Given Subset Sums
+Link: https://leetcode.com/problems/find-array-given-subset-sums/
+
+Question
+You are given an integer n representing the length of an unknown array that you are trying to recover. You are also given an array sums containing the values of all 
+(2^n) subset sums of the unknown array (in no particular order).
+Return the array ans of length n representing the unknown array. If multiple answers exist, return any of them.
+An array sub is a subset of an array arr if sub can be obtained from arr by deleting some (possibly zero or all) elements of arr. The sum of the elements in sub is one 
+possible subset sum of arr. The sum of an empty array is considered to be 0.
+Note: Test cases are generated such that there will always be at least one correct answer.
+ 
+
+Time Complexity: O((2^N) * (log(2^N))) = O((2^N) * N * log(2)) = O((2^N) * N), where N is the length of the array
+Space Complexity: O(N), where N is the length of the array
+
+
+Solution
+class Solution {
+    public int[] recoverArray(int n, int[] sums) {
+        Arrays.sort(sums);
+        int m = sums.length, zeroShift = 0;
+        int[] res = new int[n];
+        for (int i = 0; i < n; ++i) {
+            int diff = sums[1] - sums[0], hasZero = 0, p = 0, k = 0, zpos = m;
+            for (int j = 0; j < m; ++j) {
+                if (k < p && sums[k] == sums[j]) k++;
+                else {
+                    if (zeroShift == sums[j]) zpos = p;
+                    sums[p++] = sums[j] + diff;
+                }
+            }
+            if (zpos >= m / 2) {
+                res[i] = -diff;
+            } else {
+                res[i] = diff;
+                zeroShift += diff;
+            }
+            m /= 2;
+        }
+        return res;
+    }
+}
