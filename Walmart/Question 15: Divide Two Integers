@@ -1,0 +1,52 @@
+Problem Name: Divide Two Integers
+Link: https://leetcode.com/problems/divide-two-integers/
+
+Question
+Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
+Return the quotient after dividing dividend by divisor.
+Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: [−2^(31), 2^(31 − 1)]. For this problem, if the quotient 
+is strictly greater than 2^(31 - 1), then return 2^(31 - 1), and if the quotient is strictly less than -2^(31), then return -2^(31).
+ 
+
+Time Complexity: O(1)
+Space Complexity: O(1)
+
+
+Solution
+class Solution {
+public:
+    int divide(int x, int y) {
+        // extraction of sign
+        int sign = ((x < 0) ^ (y < 0)) ? -1 : +1;
+
+        long int q = 0;
+
+        long long int div = y;
+        long long int dividend = x;
+
+        dividend = abs(dividend);
+        div = abs(div);
+
+        for (int i = 31; i >= 0; i--) {
+
+            if ( (div << i)  <= dividend) {
+                q = q | (1LL << i);
+                dividend = dividend - (div << i);
+            }
+
+            if (dividend < div)
+                break;
+        }
+
+
+        q = sign * q;
+        if (q < INT_MIN)
+            return INT_MIN;
+
+        if (q > INT_MAX)
+            return INT_MAX;
+
+        return q;
+    }
+};
