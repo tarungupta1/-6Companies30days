@@ -1,0 +1,41 @@
+Problem Name: Number of Unique Paths 
+Link: https://practice.geeksforgeeks.org/problems/number-of-unique-paths5339/1/
+
+Question
+Given a A X B matrix with your initial position at the top-left cell, find the number of possible unique paths to reach the bottom-right cell of the matrix from the 
+initial position.
+Note: Possible moves can be either down or right at any point in time, i.e., we can move to matrix[i+1][j] or matrix[i][j+1] from matrix[i][j].
+
+
+Time Complexity: O(min(A, B)), where A and B is the number of rows and columns in the matrix
+Space Complexity: O(1)
+
+
+Solution
+class Solution {
+public:
+    bool winnerOfGame(string colors) {
+        
+        int count1 = 0;
+        int count2 = 0;
+        
+        int n = colors.length();
+        for(int i=1; i<n-1; i++){
+            if(colors[i-1] == colors[i]  &&  colors[i] == colors[i+1]){
+                if(colors[i] == 'A'){
+                    count1++;
+                }
+                else{
+                    count2++;
+                }
+            }
+        }
+        
+        if(count1 <= count2){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+};
