@@ -11,8 +11,6 @@ Space Complexity: O(1)
 
 
 Solution
-//Initial Template for Java
-
 import java.util.LinkedList; 
 import java.util.Queue; 
 import java.io.*;
@@ -87,8 +85,8 @@ class GfG {
         
         return root;
     }
-    static void printInorder(Node root)
-    {
+    
+    static void printInorder(Node root)    {
         if(root == null)
             return;
             
@@ -116,11 +114,6 @@ class GfG {
     }
   
 }
-
-// } Driver Code Ends
-
-
-//User function template for JAVA
 
 /*Complete the Given Function
 
@@ -152,5 +145,3 @@ class Solution{
         sumTree(root);
     }
 }
-
-
