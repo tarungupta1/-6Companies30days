@@ -1,0 +1,57 @@
+Problem Name: Number of Provinces
+Link: https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/1/
+
+Question
+Given a Binary Tree of size N , where each node can have positive or negative values. Convert this to a tree where each node contains the sum of the left and right sub 
+trees of the original tree. The values of leaf nodes are changed to 0.
+
+
+Time Complexity: O(N), where N is the number of nodes
+Space Complexity: O(1)
+
+
+Solution
+//Initial template for C++
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function template in C++
+
+class Solution
+{
+    public:
+    //Function to find total number of unique paths.
+    int NumberOfPath(int a, int b){
+        //code here
+        
+        long long int ans = 1;
+        for(int i=a; i<=(a+b-2); i++){
+            ans *= i;
+            ans /= (i - a + 1);
+        }
+        
+        return ans;
+    }
+};
+
+
+// { Driver Code Starts.
+int main()
+{
+    //taking total testcases
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        //taking dimensions of the matrix
+        int a,b;
+        cin>>a>>b;
+        Solution ob;
+        //calling NumberOfPath() function
+        cout << ob.NumberOfPath(a,b) << endl;
+    }
+}
+
+  // } Driver Code Ends
+
