@@ -12,30 +12,48 @@ Space Complexity: O(1)
 
 
 Solution
-class Solution {
-public:
-    bool winnerOfGame(string colors) {
+//Initial template for C++
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function template in C++
+
+class Solution
+{
+    public:
+    //Function to find total number of unique paths.
+    int NumberOfPath(int a, int b){
+        //code here
         
-        int count1 = 0;
-        int count2 = 0;
-        
-        int n = colors.length();
-        for(int i=1; i<n-1; i++){
-            if(colors[i-1] == colors[i]  &&  colors[i] == colors[i+1]){
-                if(colors[i] == 'A'){
-                    count1++;
-                }
-                else{
-                    count2++;
-                }
-            }
+        long long int ans = 1;
+        for(int i=a; i<=(a+b-2); i++){
+            ans *= i;
+            ans /= (i - a + 1);
         }
         
-        if(count1 <= count2){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return ans;
     }
 };
+
+
+// { Driver Code Starts.
+int main()
+{
+    //taking total testcases
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        //taking dimensions of the matrix
+        int a,b;
+        cin>>a>>b;
+        Solution ob;
+        //calling NumberOfPath() function
+        cout << ob.NumberOfPath(a,b) << endl;
+    }
+}
+
+  // } Driver Code Ends
+
+
